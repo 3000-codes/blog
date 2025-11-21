@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-quicksand: 'Quicksand', sans-serif;
+  --font-orbitron: 'Orbitron', sans-serif;
+}
+
+body {
+  background-color: #e0f2fe;
+  overflow-x: hidden;
+}
+
+/* Liquid Animation Keyframes */
+@keyframes wobble {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+.animate-wobble {
+  animation: wobble 8s ease-in-out infinite;
+}
+
+/* Hide scrollbar for clean UI */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Markdown Styles */
+.markdown-body h1 { font-size: 2em; font-weight: bold; margin-bottom: 0.5em; margin-top: 1em; }
+.markdown-body h2 { font-size: 1.5em; font-weight: bold; margin-bottom: 0.5em; margin-top: 1em; }
+.markdown-body h3 { font-size: 1.25em; font-weight: bold; margin-bottom: 0.5em; margin-top: 1em; }
+.markdown-body p { margin-bottom: 1em; line-height: 1.6; }
+.markdown-body ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; }
+.markdown-body code { background: rgba(125,125,125,0.2); padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+.markdown-body pre { background: rgba(0,0,0,0.1); padding: 1em; border-radius: 8px; overflow-x: auto; margin-bottom: 1em; }
+.markdown-body blockquote { border-left: 4px solid rgba(125,125,125,0.5); padding-left: 1em; margin-left: 0; font-style: italic; }
