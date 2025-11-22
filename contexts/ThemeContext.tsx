@@ -124,8 +124,8 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState<Theme>(themes.spring);
-  const [showWaterDrop, setShowWaterDrop] = useState(true);
-  const [waterDropSize, setWaterDropSize] = useState(256); // Default 256px
+  const [showWaterDrop, setShowWaterDrop] = useState(false);
+  const [waterDropSize, setWaterDropSize] = useState(32); // Default 32px
 
   const setTheme = (name: ThemeName) => {
     setCurrentTheme(themes[name]);

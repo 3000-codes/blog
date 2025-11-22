@@ -5,8 +5,9 @@ import { CalendarWidget } from './components/CalendarWidget';
 import { ClockWidget } from './components/ClockWidget';
 import { WaterDrop } from './components/WaterDrop';
 import { GithubWidget, JuejinWidget, MailWidget, MusicPlayer, NewArticle } from './components/Widgets';
-import { PenTool, Palette, Droplets, Minimize, Maximize } from 'lucide-react';
+import { PenTool, Palette, Droplets, Minimize, Maximize, Languages } from 'lucide-react';
 import { useTheme } from './contexts/ThemeContext';
+import { useLanguage } from './contexts/LanguageContext';
 import { ThemeName, BlogPost } from './types';
 import { SeasonalEffects } from './components/SeasonalEffects';
 import { ArticleModal } from './components/ArticleModal';
@@ -14,6 +15,7 @@ import { posts } from './data/posts';
 
 const ThemeSwitcher: React.FC = () => {
   const { setTheme, currentTheme, showWaterDrop, setShowWaterDrop, waterDropSize, setWaterDropSize } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   
@@ -40,26 +42,26 @@ const ThemeSwitcher: React.FC = () => {
     <div className="relative" ref={menuRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`${currentTheme.colors.accentBg} w-10 h-10 rounded-xl flex items-center justify-center shadow-lg ${currentTheme.colors.shadow} hover:-translate-y-1 transition-transform`}
+        className={`${currentTheme.colors.accentBg} w-14 h-14 rounded-full flex items-center justify-center shadow-xl ${currentTheme.colors.shadow} hover:-translate-y-1 transition-transform`}
       >
-        <Palette size={18} />
+        <Palette size={24} />
       </button>
       
       {/* Settings Panel */}
       <div className={`
-        absolute top-full right-0 mt-2 p-4 
+        absolute bottom-full right-0 mb-6 p-5 
         bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl 
         border border-white/50 
-        flex flex-col gap-4 
-        w-64
-        origin-top-right transition-all duration-200
+        flex flex-col gap-5 
+        w-72
+        origin-bottom-right transition-all duration-200
         ${isOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95'}
         z-50
       `}>
         
         {/* Section: Colors */}
         <div>
-            <div className="text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">Theme</div>
+            <div className="text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">{t('settings.theme')}</div>
             <div className="flex flex-wrap gap-2">
                 {themeOptions.map((t) => (
                 <button 
@@ -74,12 +76,36 @@ const ThemeSwitcher: React.FC = () => {
 
         <div className="h-px bg-gray-200 w-full" />
 
+        {/* Section: Language */}
+        <div>
+            <div className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-2">
+                <Languages size={16} className="text-gray-400" />
+                <span>{t('settings.language')}</span>
+            </div>
+            <div className="flex bg-gray-100 rounded-lg p-1">
+                <button 
+                    onClick={() => setLanguage('zh')}
+                    className={`flex-1 py-1 text-xs font-bold rounded-md transition-all ${language === 'zh' ? 'bg-white shadow text-gray-900' : 'text-gray-500 hover:bg-gray-200'}`}
+                >
+                    中文
+                </button>
+                <button 
+                    onClick={() => setLanguage('en')}
+                    className={`flex-1 py-1 text-xs font-bold rounded-md transition-all ${language === 'en' ? 'bg-white shadow text-gray-900' : 'text-gray-500 hover:bg-gray-200'}`}
+                >
+                    English
+                </button>
+            </div>
+        </div>
+
+        <div className="h-px bg-gray-200 w-full" />
+
         {/* Section: Water Drop */}
         <div>
              <div className="flex items-center justify-between mb-3">
                  <div className="flex items-center gap-2 text-sm font-bold text-gray-700">
                      <Droplets size={16} className={showWaterDrop ? 'text-blue-500' : 'text-gray-400'} />
-                     <span>Water Drop</span>
+                     <span>{t('settings.waterDrop')}</span>
                  </div>
                  
                  {/* Toggle Switch */}
@@ -95,7 +121,7 @@ const ThemeSwitcher: React.FC = () => {
                  <div className="space-y-2">
                      <div className="flex justify-between text-xs text-gray-500">
                          <Minimize size={12} />
-                         <span>Size</span>
+                         <span>{t('settings.size')}</span>
                          <Maximize size={12} />
                      </div>
                      <input 
@@ -144,17 +170,20 @@ const App: React.FC = () => {
 
       <div className="max-w-7xl mx-auto h-full relative z-10">
         
-        {/* Floating Header Actions */}
-        <div className="absolute top-0 right-0 p-4 flex gap-3 z-20">
-            <button className={`hidden lg:flex ${currentTheme.colors.accentBg} px-4 py-2 rounded-xl items-center gap-2 shadow-lg ${currentTheme.colors.shadow} hover:-translate-y-1 transition-transform`}>
-                <PenTool size={16} />
-                <span className="font-bold text-sm">Write</span>
-            </button>
+        {/* Floating Header Actions (Bottom Right) */}
+        <div className="fixed bottom-8 right-8 flex flex-col-reverse items-end gap-4 z-50">
             <ThemeSwitcher />
+            
+            <button 
+                className={`hidden lg:flex ${currentTheme.colors.accentBg} w-14 h-14 rounded-full items-center justify-center shadow-xl ${currentTheme.colors.shadow} hover:-translate-y-1 transition-transform`}
+                title="Write"
+            >
+                <PenTool size={24} />
+            </button>
         </div>
 
         {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[calc(100vh-4rem)] pt-16 lg:pt-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[calc(100vh-4rem)]">
             
             {/* Left Column: Sidebar (3 cols) */}
             <div className="lg:col-span-3 h-full">
