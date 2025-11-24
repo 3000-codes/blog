@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Sidebar } from './Sidebar';
 import { ProfileHero } from './ProfileHero';
 import { CalendarWidget } from './CalendarWidget';
-import { ClockWidget } from './ClockWidget';
+import { QuoteWidget } from './QuoteWidget';
 import { WaterDrop } from './WaterDrop';
 import { GithubWidget, JuejinWidget, MailWidget, MusicPlayer, NewArticle } from './Widgets';
 import { PenTool, Palette, Droplets, Minimize, Maximize, Languages } from 'lucide-react';
@@ -175,7 +175,7 @@ export const Dashboard: React.FC = () => {
 
       <div className="max-w-7xl mx-auto h-full relative z-10">
         
-        {/* Floating Header Actions (Now at Bottom Right) */}
+        {/* Floating Header Actions (Bottom Right) */}
         <div className="fixed bottom-8 right-8 flex flex-col-reverse items-end gap-4 z-50">
             <ThemeSwitcher />
             
@@ -221,7 +221,7 @@ export const Dashboard: React.FC = () => {
             {/* Right Column: Widgets (3 cols) */}
             <div className="lg:col-span-4 flex flex-col gap-6">
                 <div>
-                   <ClockWidget />
+                   <QuoteWidget />
                 </div>
                 
                 <div className="flex-1">

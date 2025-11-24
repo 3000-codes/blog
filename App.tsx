@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { ProfileHero } from './components/ProfileHero';
 import { CalendarWidget } from './components/CalendarWidget';
-import { ClockWidget } from './components/ClockWidget';
+import { QuoteWidget } from './components/QuoteWidget';
 import { WaterDrop } from './components/WaterDrop';
 import { GithubWidget, JuejinWidget, MailWidget, MusicPlayer, NewArticle } from './components/Widgets';
 import { PenTool, Palette, Droplets, Minimize, Maximize, Languages } from 'lucide-react';
@@ -216,7 +216,7 @@ const App: React.FC = () => {
             {/* Right Column: Widgets (3 cols) */}
             <div className="lg:col-span-4 flex flex-col gap-6">
                 <div>
-                   <ClockWidget />
+                   <QuoteWidget />
                 </div>
                 
                 <div className="flex-1">

@@ -29,6 +29,11 @@ const translations: Translations = {
     'widget.music': 'Random Music',
     'widget.latest': 'Latest Article',
     
+    'widget.contributions': 'Contributions',
+    'widget.lastYear': 'Last Year',
+    'widget.less': 'Less',
+    'widget.more': 'More',
+    
     'calendar.weekdays': 'Sun,Mon,Tue,Wed,Thu,Fri,Sat',
     
     'settings.theme': 'Theme',
@@ -57,6 +62,11 @@ const translations: Translations = {
     'widget.blog': '掘金主页',
     'widget.music': '随机音乐',
     'widget.latest': '最新文章',
+
+    'widget.contributions': '贡献活跃度',
+    'widget.lastYear': '过去一年',
+    'widget.less': '少',
+    'widget.more': '多',
     
     'calendar.weekdays': '日,一,二,三,四,五,六',
     
