@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -13,6 +14,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { ThemeName, BlogPost } from '../types';
 import { SeasonalEffects } from './SeasonalEffects';
 import { ArticleModal } from './ArticleModal';
+import { ResourcesModal } from './ResourcesModal';
 import { posts } from '../data/posts';
 
 const ThemeSwitcher: React.FC = () => {
@@ -148,6 +150,7 @@ export const Dashboard: React.FC = () => {
   const { currentTheme } = useTheme();
   const { language } = useLanguage();
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [showResources, setShowResources] = useState(false);
 
   const handleOpenLatest = () => {
       const localizedPosts = posts.filter(p => p.language === language);
@@ -172,6 +175,9 @@ export const Dashboard: React.FC = () => {
 
       {/* Article Modal */}
       <ArticleModal post={selectedPost} onClose={() => setSelectedPost(null)} />
+      
+      {/* Resources / Yellow Pages Modal */}
+      <ResourcesModal isOpen={showResources} onClose={() => setShowResources(false)} />
 
       <div className="max-w-7xl mx-auto h-full relative z-10">
         
@@ -192,7 +198,10 @@ export const Dashboard: React.FC = () => {
             
             {/* Left Column: Sidebar (3 cols) */}
             <div className="lg:col-span-3 h-full">
-                <Sidebar onOpenArticle={handleOpenLatest} />
+                <Sidebar 
+                  onOpenArticle={handleOpenLatest} 
+                  onOpenResources={() => setShowResources(true)}
+                />
             </div>
 
             {/* Middle Column: Hero & Misc (6 cols) */}

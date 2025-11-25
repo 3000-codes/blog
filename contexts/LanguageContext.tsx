@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
@@ -16,7 +17,7 @@ const translations: Translations = {
     'sidebar.recent': 'Recent Articles',
     'sidebar.projects': 'My Projects',
     'sidebar.about': 'About Me',
-    'sidebar.recommend': 'Recommended',
+    'sidebar.recommend': 'Yellow Pages',
     'sidebar.awesome': 'Awesome Blogs',
     'sidebar.copyright': '© 2025 Suni Blog',
     
@@ -43,6 +44,13 @@ const translations: Translations = {
     
     'article.readTime': 'min read',
     'article.thanks': 'Thanks for reading!',
+
+    'resources.title': 'Yellow Pages',
+    'resources.subtitle': 'Curated list of useful tools and resources',
+    'resources.dev': 'Development',
+    'resources.design': 'Design',
+    'resources.tools': 'Productivity',
+    'resources.visit': 'Visit',
   },
   zh: {
     'status.inDev': '开发中',
@@ -50,7 +58,7 @@ const translations: Translations = {
     'sidebar.recent': '近期文章',
     'sidebar.projects': '我的项目',
     'sidebar.about': '关于网站',
-    'sidebar.recommend': '推荐分享',
+    'sidebar.recommend': '资源黄页',
     'sidebar.awesome': '优秀博客',
     'sidebar.copyright': '© 2025 Suni 博客',
     
@@ -77,6 +85,13 @@ const translations: Translations = {
     
     'article.readTime': '分钟阅读',
     'article.thanks': '感谢阅读！',
+
+    'resources.title': '资源黄页',
+    'resources.subtitle': '精选的开发设计工具与资源集合',
+    'resources.dev': '开发技术',
+    'resources.design': '设计灵感',
+    'resources.tools': '效率工具',
+    'resources.visit': '访问',
   }
 };
 

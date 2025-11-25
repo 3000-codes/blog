@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -28,9 +29,10 @@ const SidebarItem: React.FC<{ icon: React.ReactNode; label: string; active?: boo
 
 interface SidebarProps {
     onOpenArticle: () => void;
+    onOpenResources: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ onOpenArticle }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ onOpenArticle, onOpenResources }) => {
   const { currentTheme } = useTheme();
   const { t } = useLanguage();
 
@@ -54,7 +56,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenArticle }) => {
           <SidebarItem icon={<FileText size={20} />} label={t('sidebar.recent')} onClick={onOpenArticle} />
           <SidebarItem icon={<Grid size={20} />} label={t('sidebar.projects')} />
           <SidebarItem icon={<Info size={20} />} label={t('sidebar.about')} active />
-          <SidebarItem icon={<Star size={20} />} label={t('sidebar.recommend')} />
+          <SidebarItem icon={<Star size={20} />} label={t('sidebar.recommend')} onClick={onOpenResources} />
           <SidebarItem icon={<Globe size={20} />} label={t('sidebar.awesome')} />
         </div>
       </div>

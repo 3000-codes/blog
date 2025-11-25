@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Quicksand, Orbitron } from 'next/font/google';
 import './globals.css';
 import { Providers } from '../components/Providers';
+import React from 'react';
 
 const quicksand = Quicksand({ 
   subsets: ['latin'],

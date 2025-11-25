@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { ProfileHero } from './components/ProfileHero';
@@ -11,6 +12,7 @@ import { useLanguage } from './contexts/LanguageContext';
 import { ThemeName, BlogPost } from './types';
 import { SeasonalEffects } from './components/SeasonalEffects';
 import { ArticleModal } from './components/ArticleModal';
+import { ResourcesModal } from './components/ResourcesModal';
 import { posts } from './data/posts';
 
 const ThemeSwitcher: React.FC = () => {
@@ -145,6 +147,7 @@ const ThemeSwitcher: React.FC = () => {
 const App: React.FC = () => {
   const { currentTheme } = useTheme();
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [showResources, setShowResources] = useState(false);
 
   const handleOpenLatest = () => {
       if (posts.length > 0) {
@@ -168,6 +171,9 @@ const App: React.FC = () => {
       {/* Article Modal */}
       <ArticleModal post={selectedPost} onClose={() => setSelectedPost(null)} />
 
+      {/* Resources Modal */}
+      <ResourcesModal isOpen={showResources} onClose={() => setShowResources(false)} />
+
       <div className="max-w-7xl mx-auto h-full relative z-10">
         
         {/* Floating Header Actions (Bottom Right) */}
@@ -187,7 +193,10 @@ const App: React.FC = () => {
             
             {/* Left Column: Sidebar (3 cols) */}
             <div className="lg:col-span-3 h-full">
-                <Sidebar onOpenArticle={handleOpenLatest} />
+                <Sidebar 
+                  onOpenArticle={handleOpenLatest} 
+                  onOpenResources={() => setShowResources(true)}
+                />
             </div>
 
             {/* Middle Column: Hero & Misc (6 cols) */}
